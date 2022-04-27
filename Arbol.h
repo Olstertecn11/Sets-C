@@ -1,12 +1,16 @@
 #include "Nodo.cpp"
 
-class Arbol{
-  public:
-    Nodo *raiz;
-    int tam;
-    Arbol();
-    void insertarNodo(Nodo *, Conjunto);
-    void imprimirEnOrden(Nodo *);
-    void add(Conjunto);
-    void print();
+class Arbol {
+public:
+  Nodo *raiz;
+  int tam;
+  Arbol();
+  void insertarNodo(Nodo *, string , string );
+  void imprimirEnOrden(Nodo *);
+  Nodo *union_conjuntos(Nodo *, Nodo *);
+  Nodo intersec_conjuntos(Nodo *, Nodo *);
+  bool esIgual(string, string);
+  void add(string, string);
+  void print();
+  void printUnion();
 };

@@ -1,7 +1,8 @@
 #include "Nodo.h"
 
-Nodo::Nodo(Conjunto c) {
+Nodo::Nodo(string n, string e) {
   this->izq = NULL;
   this->der = NULL;
-  this->elemento = c;
+  this->elemento = e;
+  this->nombre = n;
 }
