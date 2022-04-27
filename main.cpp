@@ -13,6 +13,8 @@ int main(){
   arbol.print();
   arbol.printUnion();
   arbol.printIntersec();
+  arbol.printDiferencia();
+  arbol.printDiferenciaSim();
 }
 
 

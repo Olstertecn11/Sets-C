@@ -9,9 +9,13 @@ public:
   void imprimirEnOrden(Nodo *);
   Nodo *union_conjuntos(Nodo *, Nodo *);
   Nodo *intersec_conjuntos(Nodo *, Nodo *);
+  Nodo *diferencia_conjuntos(Nodo *, Nodo *);
+  Nodo *diferencia_sim_conjuntos(Nodo *, Nodo *);
   bool esIgual(char, string);
   void add(string, string);
   void print();
   void printUnion();
   void printIntersec();
+  void printDiferencia();
+  void printDiferenciaSim();
 };
