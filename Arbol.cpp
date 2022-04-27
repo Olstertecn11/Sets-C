@@ -2,34 +2,33 @@
 
 
 Nodo* Arbol::union_conjuntos(Nodo* a, Nodo* b){
-  string n = a->nombre + "+" + b->nombre;
+  string n = a->nombre + " U " + b->nombre;
   string e = a->elemento + b->elemento;
   Nodo *nuevo = new Nodo(n, e);
   return nuevo;
 }
 
-bool Arbol::esIgual(string a, string b){
-  for(int i = 0; i < a.length(); i++){
-    for(int j = 0; j < b.length(); j++){
-      if(a[i] == b[j])
-      {
-	return true;
-      }
+bool Arbol::esIgual(char a, string b){
+  for(int i = 0; i < b.length(); i++){
+    if(a == b[i]){
+      return true;
     }
   }
   return false;
 }
 
-Nodo Arbol::intersec_conjuntos(Nodo*a, Nodo*b){
-  Nodo resultado = Nodo("", "");
-  /* for(int i = 0; i < c1.length(); i++){ */
-  /*   if(esIgual(c1,  c2)){ */
-  /*     cf += c1[i]; */
-  /*     resultado.nombre = a.nombre + "+" + b.nombre; */
-  /*     resultado.elementos = cf; */
-  /*     return resultado; */
-  /*   } */
-  /* } */
+Nodo* Arbol::intersec_conjuntos(Nodo*a, Nodo*b){
+  Nodo *resultado =new  Nodo("", "");
+  string c1 = a->elemento;
+  string c2 = b->elemento;
+  string cf = "";
+  for(int i = 0; i < c1.length(); i++){
+    if(esIgual(c1[i],  c2)){
+      cf += c1[i];
+    }
+  }
+  resultado->elemento = cf;
+  resultado->nombre = a->nombre + " () " + b->nombre;
   return resultado;
 }
 
@@ -98,6 +97,12 @@ void Arbol::printUnion()
 }
 
 
+void Arbol::printIntersec()
+{
+	if(this->raiz == NULL) return;
+	Nodo *result = this->intersec_conjuntos(this->raiz, this->raiz->izq);
+	cout << "Nombre: " << result->nombre << " elementos: " << result->elemento << endl;
+}
 
 
 

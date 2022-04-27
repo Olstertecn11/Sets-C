@@ -12,6 +12,7 @@ int main(){
   arbol.add("Numeros", "123456789");
   arbol.print();
   arbol.printUnion();
+  arbol.printIntersec();
 }
 
 

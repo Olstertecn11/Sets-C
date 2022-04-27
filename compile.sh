@@ -1,2 +1,3 @@
 #!/bin/bash
-echo HOla Mundo
+g++ -std=c++11 -o main main.cpp
+./main
