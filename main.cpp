@@ -15,6 +15,8 @@ int main(){
   arbol.printIntersec();
   arbol.printDiferencia();
   arbol.printDiferenciaSim();
+  cout << "Arbol" << endl;
+  arbol.printElementos();
 }
 
 

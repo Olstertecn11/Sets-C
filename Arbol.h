@@ -18,4 +18,6 @@ public:
   void printIntersec();
   void printDiferencia();
   void printDiferenciaSim();
+  void printElementos(string, Nodo*,  bool);
+  void printElementos();
 };

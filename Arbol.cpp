@@ -155,4 +155,36 @@ void Arbol::printDiferenciaSim()
 	cout << "Nombre: " << result->nombre << " elementos: " << result->elemento << endl;
 }
 
+void Arbol::printElementos(string prefijo, Nodo* nodo, bool esIzq){
+  if(nodo != NULL)
+  {
+    cout << prefijo;
+    cout << (esIzq ? "├──" : "└──");
+    cout << nodo->nombre << " " << nodo->elemento << endl;
+    this->printElementos(prefijo + (esIzq ? "│   " : "    "), nodo->izq, true);
+    this->printElementos(prefijo + (esIzq ? "│   " : "    "), nodo->der, false);
+  }
+}
+
+void Arbol::printElementos()
+{
+  this->printElementos("", this->raiz, false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
