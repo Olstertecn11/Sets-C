@@ -2,46 +2,48 @@
 
 
 Nodo* Arbol::union_conjuntos(Nodo* a, Nodo* b){
-  string n = a->nombre + " U " + b->nombre;
-  string e = a->elemento + b->elemento;
-  Nodo *nuevo = new Nodo(n, e);
+  string n = a->nombre + " + " + b->nombre;
+  vector<string> e_f = a->elementos;
+  vector<string> e_b = b->elementos;
+  for(int i = 0; i < e_b.size(); i++){
+    e_f.push_back(e_b[i]);
+  }
+  Nodo *nuevo = new Nodo(n, e_f);
   return nuevo;
 }
 
 Nodo* Arbol::diferencia_conjuntos(Nodo* a, Nodo* b){
-  Nodo *resultado =new  Nodo("", "");
-  string c1 = a->elemento;
-  string c2 = b->elemento;
-  string cf = "";
-  for(int i = 0; i < c1.length(); i++){
-    if(!esIgual(c1[i],  c2)){
-      cf += c1[i];
-    }
-  }
-  resultado->elemento = cf;
-  resultado->nombre = a->nombre + " - " + b->nombre;
-  return resultado;
+  string n = a->nombre + " - " + b->nombre;
+	vector<string> e_f = a->elementos;
+	vector<string> e_b = b->elementos;
+	for(int i = 0; i < e_b.size(); i++){
+		for(int j = 0; j < e_f.size(); j++){
+			if(e_b[i] == e_f[j]){
+				e_f.erase(e_f.begin() + j);
+			}
+		}
+	}
+	Nodo *nuevo = new Nodo(n, e_f);
+	return nuevo;
 }
 
 Nodo * Arbol::diferencia_sim_conjuntos(Nodo *a, Nodo *b)
 {
-  Nodo *resultado = new Nodo("", "");
-  string c1 = a->elemento;
-  string c2 = b->elemento;
-  string cf = "";
-  for(int i = 0; i < c1.length(); i++){
-      if(!esIgual(c1[i],  c2)){
-	cf += c1[i];
-      }
-  }
-  for(int i = 0; i < c2.length(); i++){
-      if(!esIgual(c2[i],  c1)){
-	cf += c2[i];
-      }
-  }
-  resultado->elemento = cf;
-  resultado->nombre = a->nombre + " V " + b->nombre;
-  return resultado;
+  	string n = a->nombre + " - " + b->nombre;
+	vector<string> e_f = a->elementos;
+	vector<string> e_b = b->elementos;
+	for (int i = 0; i < e_b.size(); i++)
+	{
+		for (int j = 0; j < e_f.size(); j++)
+		{
+			if (e_b[i] == e_f[j])
+			{
+				e_f.erase(e_f.begin() + j);
+			}
+		}
+	}
+	Nodo *nuevo = new Nodo(n, e_f);
+	return nuevo;
 }
 
 
@@ -76,14 +78,14 @@ Arbol::Arbol(){
 }
 
 
-void Arbol::insertarNodo(Nodo *actual, string n, string e){
+void Arbol::insertarNodo(Nodo *actual, string n, vector<string> e){
   if(this->raiz == NULL) 
   {
     this->raiz = new Nodo(n, e);
   }
   else
   {
-    if(e.length() < actual->elemento.length())
+    if(e.size() < actual->elementos.size())
     {
       if(actual->izq == NULL) 
       {
@@ -108,7 +110,7 @@ void Arbol::insertarNodo(Nodo *actual, string n, string e){
   }
 }
 
-void Arbol::add(string n, string e)
+void Arbol::add(string n, vector<string> e)
 {
   this->insertarNodo(this->raiz, n, e);
 }
@@ -117,7 +119,9 @@ void Arbol::imprimirEnOrden(Nodo* actual)
 {
   if(actual == NULL) return;
   this->imprimirEnOrden(actual->izq);
-  cout << "Nombre: " << actual->nombre << " elementos: " << actual->elemento << endl;
+  cout << "Nombre: " << actual->nombre << " elementos: ";
+  actual->imp_elementos();
+  cout << endl;
   this->imprimirEnOrden(actual->der);
 }
 
