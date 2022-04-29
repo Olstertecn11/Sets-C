@@ -46,7 +46,7 @@ Nodo * Arbol::diferencia_sim_conjuntos(Nodo *a, Nodo *b)
       }
     }
   }
-  string n = a->nombre + " A " + b->nombre;
+  string n = a->nombre + " # " + b->nombre;
   Nodo *nuevo = new Nodo(n, r);
   return nuevo;
 }
@@ -152,28 +152,46 @@ void Arbol::printUnion(string n1, string n2)
 }
 
 
-void Arbol::printIntersec()
+void Arbol::printIntersec(string n1, string  n2)
 {
 	if(this->raiz == NULL) return;
-	Nodo *result = this->intersec_conjuntos(this->raiz, this->raiz->izq);
+	Nodo *a = this->buscar(this->raiz, n1);
+	Nodo *b = this->buscar(this->raiz, n2);
+	if (a == NULL || b == NULL) {
+	  cout << "No existe el conjunto" << endl;
+	  return;
+	}
+	Nodo *result = this->intersec_conjuntos(a, b);
 	cout << "Nombre: " << result->nombre << " elementos: ";
 	result->imp_elementos();
 	cout << endl;
 }
 
-void Arbol::printDiferencia()
+void Arbol::printDiferencia(string n1, string  n2)
 {
   	if(this->raiz == NULL) return;
-	Nodo *result = this->diferencia_conjuntos(this->raiz, this->raiz->izq);
+	Nodo *a = this->buscar(this->raiz, n1);
+	Nodo *b = this->buscar(this->raiz, n2);
+	if(a == NULL || b == NULL) {
+	  cout << "No existe el conjunto" << endl;
+	  return;
+	}
+	Nodo *result = this->diferencia_conjuntos(a, b);
 	cout << "Nombre: " << result->nombre << " elementos: " ;
 	result->imp_elementos();
 	cout << endl;
 }
 
-void Arbol::printDiferenciaSim()
+void Arbol::printDiferenciaSim(string n1, string n2)
 {
 	if(this->raiz == NULL) return;
-	Nodo *result = this->diferencia_sim_conjuntos(this->raiz, this->raiz->izq);
+	Nodo *a = this->buscar(this->raiz, n1);
+	Nodo *b = this->buscar(this->raiz, n1);
+	if (a == NULL || b == NULL) {
+	  cout << "No existe el conjunto" << endl;
+	  return;
+	}
+	Nodo *result = this->diferencia_sim_conjuntos(a, b);
 	cout << "Nombre: " << result->nombre << " elementos: ";
 	result->imp_elementos();
 	cout << endl;

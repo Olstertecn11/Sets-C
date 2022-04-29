@@ -17,9 +17,9 @@ public:
   void print();
   void printUnion(string, string);
   Nodo* buscar(Nodo*, string);
-  void printIntersec();
-  void printDiferencia();
-  void printDiferenciaSim();
+  void printIntersec(string, string);
+  void printDiferencia(string, string);
+  void printDiferenciaSim(string, string);
   void printElementos(string, Nodo*,  bool);
   void printElementos();
 };
