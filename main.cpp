@@ -11,7 +11,7 @@ int main(){
   arbol.add("B", {"Oliver", "Liam", "Noah", "William", "James"});
   arbol.add("C", {"Oscar", "Lucas", "Miguel", "Sofia", "Agustin"});
   arbol.print();
-  arbol.printUnion();
+  arbol.printUnion("A", "B");
   /* arbol.printIntersec(); */
   /* arbol.printDiferencia(); */
   /* arbol.printDiferenciaSim(); */

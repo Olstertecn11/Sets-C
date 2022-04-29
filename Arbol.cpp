@@ -136,10 +136,16 @@ void Arbol::print(){
 }
 
 
-void Arbol::printUnion()
+void Arbol::printUnion(string n1, string n2)
 {
   if(this->raiz == NULL) return;
-	Nodo *result = this->union_conjuntos(this->raiz, this->raiz->der);
+	Nodo *a = this->buscar(this->raiz, n1);
+	Nodo *b = this->buscar(this->raiz, n2);
+	if(a == NULL || b == NULL) {
+	  cout << "No existe el conjunto" << endl;
+	  return;
+	}
+	Nodo *result = this->union_conjuntos(a, b);
 	cout << "Nombre: " << result->nombre << " elementos: ";
 	result->imp_elementos();
 	cout << endl;
@@ -192,10 +198,16 @@ void Arbol::printElementos()
 }
 
 
-
-
-
-
+Nodo *Arbol::buscar(Nodo* actual, string nombre)
+{
+  if(actual == NULL) return NULL;
+  if(actual->nombre == nombre) return actual;
+  Nodo *izq = this->buscar(actual->izq, nombre);
+  if(izq != NULL) return izq;
+  Nodo *der = this->buscar(actual->der, nombre);
+  if(der != NULL) return der;
+  return NULL;
+}
 
 
 

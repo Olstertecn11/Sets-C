@@ -15,7 +15,8 @@ public:
   bool esIgual(string, vector<string>);
   void add(string, vector<string>);
   void print();
-  void printUnion();
+  void printUnion(string, string);
+  Nodo* buscar(Nodo*, string);
   void printIntersec();
   void printDiferencia();
   void printDiferenciaSim();
