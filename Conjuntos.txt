@@ -1,0 +1,53 @@
+Centro_America = {Guatemala, Belice, El_Salvador,Honduras,Nicaragua.Costa_Rica}
+
+
+Mesoamerica = {    Mexico    ,    Panama } + Centro_America
+
+
+Caribe = { Cuba,  Jamaica.   Haiti, Republica_Dominicana, Puerto_Rico, Trinidad_Tobago}
+
+
+NorteAmerica = { Canada. Estados_Unidos. Mexico }
+
+
+SurAmerica = {Veneauela, Colombia, Suriname, Guyana, Ecuador, Peru, Chile, Bolivia, Paraguay, Uruguay, Argentina, Brasil}
+
+
+Europa = {Irlanda, Irlanda_Norte, Escocia, Gales, Inglaterra, Portugal, España, Francia, Monaco, Belgica, Holanda, Alemania, Dinamarca, Italia, Suiza, Republica_Checa, Eslovaquia, Austria, Polonia, Bulgaria, Rumania, Moldavia, Ucrania, Bielorusia, Rusia, Noruega, Finlandia, Suecia, Letonia, Estonia, Lituania, Serbia, Montenegro, Croacia, Bosnia_Herzegovina, Albania, Grecia, Chipre, Hungria, Azerbayan, Turquia, San_Marino, Liechstenstein, Vaticano, Eslovenia}
+
+
+Asia = {Israel,Arabia_Saudita, Qatar, Barein, Yemen, Oman, Kuwait, Irak, Iran, Jordania, Siria, Libano, Catar,Emiratos_Arabes_Unidos, Banglades,Birmania,Brunei,Camboya,China,Corea_del_Norte,Corea_del_Sur, Filipinas, India, Japon, Kirguistan,Laos,Malasia,Maldivas,Mongolia, Nepal,Pakistan, Singapur,Sri_Lanka,Tailandia,Tayikistan,Timon_Oriental,Turkmenistan,Uzbequistan,Vietnam,Armenia,Azerbayan,Chipre, Georgia, Indonesia, Kazajistan,Palestina, Rusia, Turquia }
+
+
+America = NorteAmerica + Mesoamerica + Caribe + SurAmerica 
+
+
+Intercontinentes = Europa * Asia 
+
+
+Paises_Del_Norte = America - ( caribe + SurAmerica + Mesoamerica )
+
+
+Mundo = ~{ } 
+
+Operacion1 = (Caribe + Mesoamerica) # ( SurAmerica+Caribe) 
+
+Operacion2 = ~Mesoamerica
+
+Arbol( Europa )
+
+Arbol ( Asia )
+
+Conjuntos( SurAmerica)
+
+Borrar_Elemento( Rusia )
+
+Borrar( America )
+
+Arbol( America )
+
+
+Elementos ( Paises_del_Norte) 
+
+
+
