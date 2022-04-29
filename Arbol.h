@@ -4,6 +4,7 @@
 class Arbol {
 public:
   Nodo *raiz;
+  Nodo *universo;
   int tam;
   Arbol();
   void insertarNodo(Nodo *, string , vector<string>);
@@ -22,4 +23,8 @@ public:
   void printDiferenciaSim(string, string);
   void printElementos(string, Nodo*,  bool);
   void printElementos();
+  void printComplemento(string);
+  void crearUniverso(Nodo *, vector<string>);
+  void crearUniverso();
+  Nodo* complemento(string);
 };

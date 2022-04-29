@@ -1,4 +1,5 @@
 #include "Arbol.h"
+#include <vector>
 
 
 Nodo* Arbol::union_conjuntos(Nodo* a, Nodo* b){
@@ -228,8 +229,48 @@ Nodo *Arbol::buscar(Nodo* actual, string nombre)
 }
 
 
+void Arbol::crearUniverso(Nodo * nodo, vector<string> con_u)
+{
+  if(nodo == NULL)return ;
+  for(int i = 0; i < nodo->elementos.size(); i++)
+  {
+	  con_u.push_back(nodo->elementos[i]);
+  }
+  if(nodo != NULL){
+    this->universo = new Nodo("U", con_u);
+  }
+  this->crearUniverso(nodo->izq, con_u);
+  this->crearUniverso(nodo->der, con_u);
+}
 
+void Arbol::crearUniverso()
+{
+  vector<string> con_u;
+  this->crearUniverso(this->raiz, con_u);
+}
 
+Nodo* Arbol::complemento(string nombre)
+{
+	if(this->raiz == NULL) return NULL;
+	Nodo *conjunto = this->buscar(this->raiz, nombre);
+	if(conjunto == NULL || this->universo == NULL) {
+	  cout << "No existe el conjunto" << endl;
+	  return NULL;
+	}
+	Nodo *result = this->diferencia_conjuntos(universo, conjunto);
+	result->nombre = "~" + nombre;
+	return result;
+}
+
+void Arbol::printComplemento(string nombre)
+{
+	if(this->raiz == NULL) return;
+	Nodo *result = this->complemento(nombre);
+	if(result == NULL) return;
+	cout << "Nombre: " << result->nombre << " elementos: ";
+	result->imp_elementos();
+	cout << endl;
+}
 
 
 
