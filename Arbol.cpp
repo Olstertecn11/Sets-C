@@ -29,26 +29,31 @@ Nodo* Arbol::diferencia_conjuntos(Nodo* a, Nodo* b){
 
 Nodo * Arbol::diferencia_sim_conjuntos(Nodo *a, Nodo *b)
 {
-  	string n = a->nombre + " - " + b->nombre;
-	vector<string> e_f = a->elementos;
-	vector<string> e_b = b->elementos;
-	for (int i = 0; i < e_b.size(); i++)
-	{
-		for (int j = 0; j < e_f.size(); j++)
-		{
-			if (e_b[i] == e_f[j])
-			{
-				e_f.erase(e_f.begin() + j);
-			}
-		}
-	}
-	Nodo *nuevo = new Nodo(n, e_f);
-	return nuevo;
+  vector<string> r;
+  vector<string> _a = a->elementos;
+  vector<string> _b = b->elementos;
+  for(int i = 0; i < _a.size(); i++){
+    for(int j = 0; j < _b.size(); j++){
+      if(!this->esIgual(_a[i], _b)){
+	r.push_back(_a[i]);
+      }
+    }
+  }
+  for(int i = 0; i < _b.size(); i++){
+    for(int j = 0; j < _a.size(); j++){
+      if(!this->esIgual(_b[i], _a)){
+	r.push_back(_b[i]);
+      }
+    }
+  }
+  string n = a->nombre + " A " + b->nombre;
+  Nodo *nuevo = new Nodo(n, r);
+  return nuevo;
 }
 
 
-bool Arbol::esIgual(char a, string b){
-  for(int i = 0; i < b.length(); i++){
+bool Arbol::esIgual(string a, vector<string> b){
+  for(int i = 0; i < b.size(); i++){
     if(a == b[i]){
       return true;
     }
@@ -57,17 +62,18 @@ bool Arbol::esIgual(char a, string b){
 }
 
 Nodo* Arbol::intersec_conjuntos(Nodo*a, Nodo*b){
-  Nodo *resultado =new  Nodo("", "");
-  string c1 = a->elemento;
-  string c2 = b->elemento;
+  Nodo *resultado =new  Nodo("", {});
+  vector<string>_a = a->elementos;
+  vector<string>_b = b->elementos;
+  vector<string>r;
   string cf = "";
-  for(int i = 0; i < c1.length(); i++){
-    if(esIgual(c1[i],  c2)){
-      cf += c1[i];
+  for(int i = 0; i < _a.size(); i++){
+    if(this->esIgual(_a[i], _b)){
+      r.push_back(_a[i]);
     }
   }
-  resultado->elemento = cf;
-  resultado->nombre = a->nombre + " () " + b->nombre;
+  resultado->nombre = a->nombre + " * " + b->nombre;
+  resultado->elementos = r;
   return resultado;
 }
 
@@ -133,8 +139,10 @@ void Arbol::print(){
 void Arbol::printUnion()
 {
   if(this->raiz == NULL) return;
-	Nodo *result = this->union_conjuntos(this->raiz, this->raiz->izq);
-	cout << "Nombre: " << result->nombre << " elementos: " << result->elemento << endl;
+	Nodo *result = this->union_conjuntos(this->raiz, this->raiz->der);
+	cout << "Nombre: " << result->nombre << " elementos: ";
+	result->imp_elementos();
+	cout << endl;
 }
 
 
@@ -142,21 +150,27 @@ void Arbol::printIntersec()
 {
 	if(this->raiz == NULL) return;
 	Nodo *result = this->intersec_conjuntos(this->raiz, this->raiz->izq);
-	cout << "Nombre: " << result->nombre << " elementos: " << result->elemento << endl;
+	cout << "Nombre: " << result->nombre << " elementos: ";
+	result->imp_elementos();
+	cout << endl;
 }
 
 void Arbol::printDiferencia()
 {
   	if(this->raiz == NULL) return;
 	Nodo *result = this->diferencia_conjuntos(this->raiz, this->raiz->izq);
-	cout << "Nombre: " << result->nombre << " elementos: " << result->elemento << endl;
+	cout << "Nombre: " << result->nombre << " elementos: " ;
+	result->imp_elementos();
+	cout << endl;
 }
 
 void Arbol::printDiferenciaSim()
 {
 	if(this->raiz == NULL) return;
 	Nodo *result = this->diferencia_sim_conjuntos(this->raiz, this->raiz->izq);
-	cout << "Nombre: " << result->nombre << " elementos: " << result->elemento << endl;
+	cout << "Nombre: " << result->nombre << " elementos: ";
+	result->imp_elementos();
+	cout << endl;
 }
 
 void Arbol::printElementos(string prefijo, Nodo* nodo, bool esIzq){
@@ -164,7 +178,9 @@ void Arbol::printElementos(string prefijo, Nodo* nodo, bool esIzq){
   {
     cout << prefijo;
     cout << (esIzq ? "├──" : "└──");
-    cout << nodo->nombre << " " << nodo->elemento << endl;
+    cout << nodo->nombre << " " ;
+    nodo->imp_elementos();
+    cout << endl;
     this->printElementos(prefijo + (esIzq ? "│   " : "    "), nodo->izq, true);
     this->printElementos(prefijo + (esIzq ? "│   " : "    "), nodo->der, false);
   }

@@ -12,7 +12,7 @@ public:
   Nodo *intersec_conjuntos(Nodo *, Nodo *);
   Nodo *diferencia_conjuntos(Nodo *, Nodo *);
   Nodo *diferencia_sim_conjuntos(Nodo *, Nodo *);
-  bool esIgual(char, string);
+  bool esIgual(string, vector<string>);
   void add(string, vector<string>);
   void print();
   void printUnion();

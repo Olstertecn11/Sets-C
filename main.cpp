@@ -7,14 +7,14 @@ using namespace std;
 
 int main(){
   Arbol arbol = Arbol();
-  arbol.add("Letras", "qwertyuiop");
-  arbol.add("Vocales", "aeiou");
-  arbol.add("Numeros", "123456789");
+  arbol.add("A", {"Guatemala", "Honduras", "Costa Rica", "Nicaragua", "El Salvador"});
+  arbol.add("B", {"Oliver", "Liam", "Noah", "William", "James"});
+  arbol.add("C", {"Oscar", "Lucas", "Miguel", "Sofia", "Agustin"});
   arbol.print();
   arbol.printUnion();
-  arbol.printIntersec();
-  arbol.printDiferencia();
-  arbol.printDiferenciaSim();
+  /* arbol.printIntersec(); */
+  /* arbol.printDiferencia(); */
+  /* arbol.printDiferenciaSim(); */
   cout << "Arbol" << endl;
   arbol.printElementos();
 }
